@@ -10,7 +10,9 @@ module.exports = function () {
                 'json' : true
                 },
                 function(error, response, body) {
-			callback(body.builds);
+			callback(body.builds.sort(function(a, b) {
+  					return a.id < b.id;
+					}));
             });
         },
         queryBuilds = function (callback) {
@@ -30,30 +32,31 @@ module.exports = function () {
                 'json' : true
                 },
                 function(error, response, body) {
+			if(!body.uuid) return;
                     callback(error, simplifyBuild(body));
             });
         },
         parseDate = function (dateAsString) {
             return new Date(dateAsString);
         },
-        getStatus = function (result, state) {
+        getStatus = function (state) {
             if (state === 'success') return "Green";
             if (state === 'error') return "Red";
             if (state === 'testing') return "Blue";
-            if (state === 'stoped') return "Gray";
+            if (state === 'stopped') return "Gray";
 	    return "Gray";
             return null;
         },
         simplifyBuild = function (res) {
             return {
-                id: res.uuid,
-                project: res.project_id,
-                number: res.commit_id.toString().substring(0,7),
-                isRunning: res.state === 'running',
-                startedAt: parseDate(res.started_at),
-                finishedAt: parseDate(res.finished_at),
+                id: res.id,
+                project: 'brach: '+res.branch,
+                number: (res.commit_id+'').substring(0,7),
+                isRunning: res.status === 'testing',
+                startedAt: (res.status!=='stopped')?parseDate(res.started_at):null,
+                finishedAt: (res.finished_at)?parseDate(res.finished_at):null,
                 requestedFor: res.github_username,
-                status: getStatus(res.result, res.status),
+                status: getStatus(res.status),
                 statusText: res.status,
                 reason: res.message,
                 hasErrors: false,
