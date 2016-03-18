@@ -45,7 +45,6 @@ module.exports = function () {
             if (state === 'testing') return "Blue";
             if (state === 'stopped') return "Gray";
 	    return "Gray";
-            return null;
         },
         simplifyBuild = function (res) {
             return {

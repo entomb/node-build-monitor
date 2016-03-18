@@ -1,20 +1,15 @@
 {
   "monitor": {
-    "interval": 5000,
+    "interval": 10000,
     "numberOfBuilds": 12,
     "debug": true
   },
   "services": [
     {
-      "name": "Travis",
+      "name": "Codeship",
       "configuration": {
-        "slug": "marcells/bloggy"
-      }
-    },
-    {
-      "name": "Travis",
-      "configuration": {
-        "slug": "marcells/node-build-monitor"
+        "project": "139556",
+        "token": "8b43b260c90501335a200291fcb3d83c"
       }
     }
   ]
