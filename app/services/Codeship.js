@@ -10,9 +10,7 @@ module.exports = function () {
                 'json' : true
                 },
                 function(error, response, body) {
-			callback(body.builds.sort(function(a, b) {
-  					return a.id < b.id;
-					}));
+                    callback(body.builds.sort(function(a, b){ return a.id < b.id; }));
             });
         },
         queryBuilds = function (callback) {
@@ -49,7 +47,7 @@ module.exports = function () {
         simplifyBuild = function (res) {
             return {
                 id: res.id,
-                project: 'brach: '+res.branch,
+                project: 'branch: '+res.branch,
                 number: (res.commit_id+'').substring(0,7),
                 isRunning: res.status === 'testing',
                 startedAt: (res.status!=='stopped')?parseDate(res.started_at):null,
