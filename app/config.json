@@ -1,7 +1,7 @@
 {
   "monitor": {
-    "interval": 10000,
-    "numberOfBuilds": 12,
+    "interval": 30000,
+	    "numberOfBuilds": 9,
     "debug": true
   },
   "services": [

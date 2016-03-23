@@ -35,7 +35,7 @@
 .default-theme .flex-item {
   float: left;
   width: 33%;
-  height: 25%;
+  height: 33%;
   color: transparent;
   position: relative;
 }
@@ -44,6 +44,7 @@
   background: transparent;
   margin: 25px;
   padding: 25px;
+  height: 80%;
   box-shadow: 0px 0px 25px 8px rgba(0,0,0,0.8);
 }
 
@@ -116,6 +117,7 @@
 .default-theme .flex-item .reason {
   margin-left: 10px;
   font-size: 15pt;
+white-space:normal;
 }
 
 .default-theme .flex-item .reason-icon {
@@ -123,7 +125,7 @@
 }
 
 .default-theme .flex-item .reason-block {
-  float: right;
+  /*float: right;*/
 }
 
 .default-theme .flex-item .for {

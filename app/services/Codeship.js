@@ -30,7 +30,7 @@ module.exports = function () {
                 'json' : true
                 },
                 function(error, response, body) {
-			if(!body.uuid) return;
+			if(!body || !body.uuid) return;
                     callback(error, simplifyBuild(body));
             });
         },
